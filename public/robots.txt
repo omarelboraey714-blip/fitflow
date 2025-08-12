@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://fitflow-sa.vercel.app/sitemap.xml
