@@ -1,9 +1,10 @@
-import Navbar from "../components/Navbar";
+import Navbar from "../components/Header";
 import Footer from "../components/Footer";
 import { Toaster } from "sonner"; // ← import Toaster
 import "./globals.css";
 
 export const metadata = {
+  metadataBase: new URL("https://fitflow-sa.vercel.app"),
   title: {
     default: "FitFlow | منصة اللياقة والصحة للسعوديين",
     template: "%s | FitFlow",

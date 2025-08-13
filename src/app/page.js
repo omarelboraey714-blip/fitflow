@@ -1,17 +1,18 @@
-import Hero from "../components/Hero";
-import Features from "../components/Features";
-import HowItWorks from "../components/HowItWorks";
-import Testimonials from "../components/Testimonials";
-import CTA from "../components/CTA";
+// Server Component
+import Header from "@/components/Header";
+import Hero from "@/components/Hero";
+import Features from "@/components/Features";
+import TestimonialsSlider from "@/components/TestimonialsSlider";
+import Footer from "@/components/Footer";
 
-export default function Home() {
+export default function HomePage() {
   return (
-    <>
+    <div className="font-sans">
+      <Header />
       <Hero />
       <Features />
-      <HowItWorks />
-      <Testimonials />
-      <CTA />
-    </>
+      <TestimonialsSlider />
+      <Footer />
+    </div>
   );
 }
