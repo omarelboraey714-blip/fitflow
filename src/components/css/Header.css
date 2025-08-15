@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+.header {
+  @apply fixed w-full top-0 z-50 bg-black/30 backdrop-blur-md;
+}
+
+.header-container {
+  @apply max-w-6xl mx-auto px-6 py-4 flex justify-between items-center;
+}
+
+.nav-desktop {
+  @apply hidden md:flex gap-8 items-center;
+}
+
+.nav-link {
+  @apply text-gray-200 hover:text-white transition;
+}
+
+.nav-link-auth {
+  @apply text-white hover:text-green-400 font-medium transition;
+}
+
+.nav-button-login {
+  @apply px-6 py-2 bg-gradient-to-r from-blue-600 to-green-500 text-white rounded-lg hover:shadow-lg transition;
+}
+
+.loading-placeholder {
+  @apply w-24 h-5 bg-gray-700 rounded animate-pulse;
+}
+
+.menu-button {
+  @apply md:hidden text-white cursor-pointer;
+}
+
+.logo {
+  @apply text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-500;
+}
+
+.nav-mobile {
+  @apply md:hidden bg-black/70 text-white;
+}
+
+.nav-mobile-container {
+  @apply flex flex-col px-6 py-4 space-y-4;
+}
+
+.nav-mobile-link {
+  @apply hover:text-green-400;
+}
+
+.nav-mobile-auth {
+  @apply text-green-400;
+}
+
+.nav-mobile-button-login {
+  @apply px-6 py-2 bg-gradient-to-r from-blue-600 to-green-500 text-white rounded-lg;
+}

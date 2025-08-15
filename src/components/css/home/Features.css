@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+.features-section {
+  @apply py-20 px-6 bg-gray-900;
+}
+
+.features-header {
+  @apply max-w-6xl mx-auto text-center mb-16;
+}
+
+.features-title {
+  @apply text-3xl md:text-4xl font-bold text-white mb-4;
+}
+
+.features-description {
+  @apply text-gray-400 text-lg;
+}
+
+.features-grid {
+  @apply grid md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto;
+}
+
+.feature-card {
+  @apply bg-gray-800 p-6 rounded-2xl shadow-lg text-center hover:bg-gray-700 transition;
+}
+
+.feature-icon-container {
+  @apply flex justify-center mb-4 transform transition-transform duration-300 hover:scale-110;
+}
+
+.feature-icon-blue {
+  @apply h-10 w-10 text-blue-500;
+}
+
+.feature-icon-green {
+  @apply h-10 w-10 text-green-500;
+}
+
+.feature-icon-yellow {
+  @apply h-10 w-10 text-yellow-500;
+}
+
+.feature-icon-purple {
+  @apply h-10 w-10 text-purple-500;
+}
+
+.feature-title {
+  @apply text-xl font-semibold text-white mb-2;
+}
+
+.feature-description {
+  @apply text-gray-400;
+}

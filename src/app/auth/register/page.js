@@ -10,7 +10,7 @@ export default function RegisterPage() {
       }}
     >
       <div className="absolute inset-0 bg-black/70"></div>
-      <div className="relative z-10 bg-white dark:bg-gray-800 p-8 md:p-12 rounded-2xl shadow-2xl max-w-4xl w-full mx-6">
+      <div className="relative z-10  dark:bg-black/50 p-8 md:p-12 rounded-2xl shadow-2xl max-w-4xl w-full mx-6 my-20">
         <div className="text-center mb-6">
           <div className="inline-block p-3 bg-blue-600 text-white rounded-full mb-4">
             <svg

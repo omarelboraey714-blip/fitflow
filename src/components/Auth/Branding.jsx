@@ -26,7 +26,9 @@ export default function Branding() {
           />
         </svg>
       </div>
-      <h1 className="text-3xl font-bold text-white">FitFlow</h1>
+      <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-500">
+        FitFlow
+      </h1>
       <p className="text-gray-300 mt-2">انضم إلى المستقبل الرياضي</p>
     </motion.div>
   );

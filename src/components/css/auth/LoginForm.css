@@ -1,0 +1,105 @@
+@import "tailwindcss";
+
+@keyframes gradient-move {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+.login-form {
+  @apply bg-black/20 backdrop-blur-lg border border-gray-700 rounded-2xl p-8 space-y-6 text-white mb-8;
+}
+
+.form-group {
+  @apply relative;
+}
+
+.form-label {
+  @apply block text-sm font-medium text-gray-300 mb-1;
+}
+
+.form-input-container {
+  @apply relative;
+}
+
+.form-icon {
+  @apply absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400;
+}
+
+.form-icon-svg {
+  @apply h-5 w-5;
+}
+
+.form-input {
+  @apply w-full pl-10 pr-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition;
+}
+
+.form-input-password {
+  @apply w-full pl-10 pr-10 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition;
+}
+
+.form-toggle-password {
+  @apply absolute inset-y-0 right-0 flex items-center px-3 text-gray-400 hover:text-white;
+}
+
+.form-checkbox-container {
+  @apply flex items-center gap-2;
+}
+
+.form-checkbox {
+  @apply w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500;
+}
+
+.form-checkbox-label {
+  @apply text-sm text-gray-300 cursor-pointer;
+}
+
+.form-forgot-password {
+  @apply text-right;
+}
+
+.form-forgot-link {
+  @apply text-sm text-blue-400 hover:text-blue-300 hover:underline transition duration-300;
+}
+
+.form-forgot-link::after {
+  @apply block w-0 h-0.5 bg-blue-400 transition-all duration-300;
+}
+
+.form-forgot-link:hover::after {
+  @apply w-full;
+}
+
+.form-submit-button {
+  @apply w-full cursor-pointer py-3 text-white font-semibold rounded-lg 
+         disabled:opacity-70 relative overflow-hidden 
+         bg-gradient-to-r from-blue-600 via-green-500 to-blue-500 
+         bg-[length:200%_200%] transition-all duration-500;
+}
+
+.form-submit-button:hover {
+  background-position: 100% 0;
+}
+
+.form-submit-button-spinner {
+  @apply flex items-center justify-center;
+}
+
+.form-submit-spinner {
+  @apply w-5 h-5 border-2 border-t-transparent border-white rounded-full animate-spin;
+}
+
+.form-submit-ripple {
+  @apply absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-20 transition;
+}
+
+.form-signup-text {
+  @apply text-center text-gray-400 text-sm;
+}
+
+.form-signup-link {
+  @apply text-blue-400 hover:text-blue-300 font-medium transition-transform duration-300 hover:scale-105;
+}

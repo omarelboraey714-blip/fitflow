@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
 import { toast } from "sonner";
-import SocialLogin from "@/components/auth/SocialLogin";
+import "../css/auth/LoginForm.css";
 
 export default function LoginForm() {
   const [formData, setFormData] = useState({
@@ -77,18 +77,16 @@ export default function LoginForm() {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       onSubmit={handleSubmit}
-      className="bg-black/20 backdrop-blur-lg border border-gray-700 rounded-2xl p-8 space-y-6 text-white"
+      className="login-form"
     >
       {/* Email */}
-      <div className="relative">
-        <label className="block text-sm font-medium text-gray-300 mb-1">
-          البريد الإلكتروني
-        </label>
-        <div className="relative">
-          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+      <div className="form-group">
+        <label className="form-label">البريد الإلكتروني</label>
+        <div className="form-input-container">
+          <span className="form-icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="form-icon-svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -108,21 +106,19 @@ export default function LoginForm() {
             onChange={handleChange}
             placeholder="example@email.com"
             required
-            className="w-full pl-10 pr-4 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+            className="form-input"
           />
         </div>
       </div>
 
       {/* Password */}
-      <div className="relative">
-        <label className="block text-sm font-medium text-gray-300 mb-1">
-          كلمة المرور
-        </label>
-        <div className="relative">
-          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400">
+      <div className="form-group">
+        <label className="form-label">كلمة المرور</label>
+        <div className="form-input-container">
+          <span className="form-icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="form-icon-svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -142,12 +138,12 @@ export default function LoginForm() {
             onChange={handleChange}
             placeholder="********"
             required
-            className="w-full pl-10 pr-10 py-3 bg-gray-900 border border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition"
+            className="form-input-password"
           />
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-400 hover:text-white"
+            className="form-toggle-password"
             aria-label={
               showPassword ? "إخفاء كلمة المرور" : "إظهار كلمة المرور"
             }
@@ -158,64 +154,51 @@ export default function LoginForm() {
       </div>
 
       {/* Remember Me */}
-      <div className="flex items-center gap-2">
+      <div className="form-checkbox-container">
         <input
           type="checkbox"
           id="remember"
           name="remember"
           checked={formData.remember}
           onChange={handleChange}
-          className="w-4 h-4 text-blue-600 bg-gray-700 border-gray-600 rounded focus:ring-blue-500"
+          className="form-checkbox"
         />
-        <label
-          htmlFor="remember"
-          className="text-sm text-gray-300 cursor-pointer"
-        >
+        <label htmlFor="remember" className="form-checkbox-label">
           تذكرني
         </label>
       </div>
 
       {/* Forgot Password */}
-      <div className="text-right">
-        <a
-          href="/auth/forgot"
-          className="text-sm text-blue-400 hover:text-blue-300 hover:underline transition duration-300 after:block after:w-0 after:h-0.5 after:bg-blue-400 after:transition-all after:duration-300 hover:after:w-full"
-        >
+      <div className="form-forgot-password">
+        <a href="/auth/forgot" className="form-forgot-link">
           نسيت كلمة المرور؟
         </a>
       </div>
 
       {/* Login Button */}
       <motion.button
-        whileHover={{ scale: 1.02 }}
-        whileTap={{ scale: 0.98 }}
         type="submit"
         disabled={loading}
-        className="w-full py-3 bg-gradient-to-r from-blue-600 to-green-500 hover:from-blue-700 hover:to-green-600 text-white font-semibold rounded-lg transition disabled:opacity-70 relative overflow-hidden group"
+        className="form-submit-button"
       >
         {loading ? (
-          <div className="flex items-center justify-center">
-            <div className="w-5 h-5 border-2 border-t-transparent border-white rounded-full animate-spin"></div>
+          <div className="form-submit-button-spinner">
+            <div className="form-submit-spinner"></div>
           </div>
         ) : (
           "تسجيل الدخول"
         )}
         {/* Ripple Effect */}
-        <span className="absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-20 transition"></span>
+        <span className="form-submit-ripple"></span>
       </motion.button>
 
       {/* Sign Up Link */}
-      <p className="text-center text-gray-400 text-sm">
+      <p className="form-signup-text">
         ليس لديك حساب؟{" "}
-        <a
-          href="/auth/register"
-          className="text-blue-400 hover:text-blue-300 font-medium transition-transform duration-300 hover:scale-105"
-        >
+        <a href="/auth/register" className="form-signup-link">
           إنشاء حساب
         </a>
       </p>
-
-      <SocialLogin />
     </motion.form>
   );
 }

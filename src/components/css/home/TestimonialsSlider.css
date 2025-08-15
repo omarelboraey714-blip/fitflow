@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+.testimonials-section {
+  @apply py-20 px-6 bg-black;
+}
+
+.testimonials-header {
+  @apply max-w-4xl mx-auto text-center mb-12;
+}
+
+.testimonials-title {
+  @apply text-3xl font-bold text-white mb-4;
+}
+
+.testimonials-description {
+  @apply text-gray-400;
+}
+
+.testimonials-slider {
+  @apply flex overflow-x-auto space-x-6 pb-6 scroll-smooth;
+}
+
+.testimonials-slider::-webkit-scrollbar {
+  @apply hidden; /* Replaces scrollbar-hide */
+}
+
+.testimonial-card {
+  @apply flex-shrink-0 w-80 bg-gray-800 p-6 rounded-2xl shadow-lg;
+}
+
+.testimonial-text {
+  @apply text-gray-300 italic mb-4;
+}
+
+.testimonial-name {
+  @apply text-blue-400 font-bold;
+}

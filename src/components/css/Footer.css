@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+.footer {
+  @apply bg-gray-900 text-white py-12 px-6;
+}
+
+.footer-content {
+  @apply max-w-6xl mx-auto grid md:grid-cols-4 gap-8;
+}
+
+.footer-brand-title {
+  @apply text-xl font-bold mb-4;
+}
+
+.footer-brand-description {
+  @apply text-gray-400;
+}
+
+.footer-links-title {
+  @apply font-semibold mb-4;
+}
+
+.footer-links-list {
+  @apply space-y-2 text-gray-400;
+}
+
+.footer-link {
+  @apply hover:text-white transition;
+}
+
+.footer-contact-title {
+  @apply font-semibold mb-4;
+}
+
+.footer-contact-info {
+  @apply text-gray-400;
+}
+
+.footer-social-title {
+  @apply font-semibold mb-4;
+}
+
+.footer-social-links {
+  @apply flex gap-4;
+}
+
+.footer-social-link {
+  @apply w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-blue-600 transition;
+}
+
+.footer-copyright {
+  @apply text-center text-gray-500 mt-8 pt-8 border-t border-gray-800;
+}

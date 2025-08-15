@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import "../css/auth/RegisterForm.css";
 
 export default function RegisterForm() {
   const [formData, setFormData] = useState({
@@ -110,16 +111,14 @@ export default function RegisterForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div>
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-          الاسم الكامل
-        </label>
-        <div className="relative">
-          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+    <form onSubmit={handleSubmit} className="form">
+      <div className="form-group">
+        <label className="form-label">الاسم الكامل</label>
+        <div className="form-input-container">
+          <span className="form-icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="form-icon-svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -138,24 +137,20 @@ export default function RegisterForm() {
             value={formData.name}
             onChange={handleChange}
             placeholder="اكتب اسمك الكامل"
-            className="w-full pl-10 p-3 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="form-input"
           />
         </div>
-        {errors.name && (
-          <p className="text-red-500 text-sm mt-1">{errors.name}</p>
-        )}
+        {errors.name && <p className="form-error">{errors.name}</p>}
       </div>
 
       {/* البريد الإلكتروني */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-          البريد الإلكتروني
-        </label>
-        <div className="relative">
-          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+      <div className="form-group">
+        <label className="form-label">البريد الإلكتروني</label>
+        <div className="form-input-container">
+          <span className="form-icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="form-icon-svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -174,24 +169,20 @@ export default function RegisterForm() {
             value={formData.email}
             onChange={handleChange}
             placeholder="example@email.com"
-            className="w-full pl-10 p-3 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="form-input"
           />
         </div>
-        {errors.email && (
-          <p className="text-red-500 text-sm mt-1">{errors.email}</p>
-        )}
+        {errors.email && <p className="form-error">{errors.email}</p>}
       </div>
 
       {/* كلمة المرور */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-          كلمة المرور
-        </label>
-        <div className="relative">
-          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+      <div className="form-group">
+        <label className="form-label">كلمة المرور</label>
+        <div className="form-input-container">
+          <span className="form-icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="form-icon-svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -210,31 +201,27 @@ export default function RegisterForm() {
             value={formData.password}
             onChange={handleChange}
             placeholder="********"
-            className="w-full pl-10 pr-10 p-3 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="form-input-password"
           />
           <button
             type="button"
             onClick={() => setShowPassword(!showPassword)}
-            className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 hover:text-gray-700"
+            className="form-toggle-password"
           >
             {showPassword ? "👁️" : "👁️‍🗨️"}
           </button>
         </div>
-        {errors.password && (
-          <p className="text-red-500 text-sm mt-1">{errors.password}</p>
-        )}
+        {errors.password && <p className="form-error">{errors.password}</p>}
       </div>
 
       {/* تأكيد كلمة المرور */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-          تأكيد كلمة المرور
-        </label>
-        <div className="relative">
-          <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+      <div className="form-group">
+        <label className="form-label">تأكيد كلمة المرور</label>
+        <div className="form-input-container">
+          <span className="form-icon">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-5 w-5"
+              className="form-icon-svg"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -253,32 +240,30 @@ export default function RegisterForm() {
             value={formData.confirmPassword}
             onChange={handleChange}
             placeholder="********"
-            className="w-full pl-10 pr-10 p-3 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="form-input-password"
           />
           <button
             type="button"
             onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-            className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 hover:text-gray-700"
+            className="form-toggle-password"
           >
             {showConfirmPassword ? "👁️" : "👁️‍🗨️"}
           </button>
         </div>
         {errors.confirmPassword && (
-          <p className="text-red-500 text-sm mt-1">{errors.confirmPassword}</p>
+          <p className="form-error">{errors.confirmPassword}</p>
         )}
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="form-grid">
         {/* رقم الهاتف */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            رقم الهاتف
-          </label>
-          <div className="relative">
-            <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+        <div className="form-group">
+          <label className="form-label">رقم الهاتف</label>
+          <div className="form-input-container">
+            <span className="form-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="form-icon-svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -297,21 +282,19 @@ export default function RegisterForm() {
               value={formData.phone}
               onChange={handleChange}
               placeholder="+966XXXXXXXXX"
-              className="w-full pl-10 p-3 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="form-input"
             />
           </div>
         </div>
 
         {/* العمر */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            العمر
-          </label>
-          <div className="relative">
-            <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-gray-500">
+        <div className="form-group">
+          <label className="form-label">العمر</label>
+          <div className="form-input-container">
+            <span className="form-icon">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
+                className="form-icon-svg"
                 fill="none"
                 viewBox="0 0 24 24"
                 stroke="currentColor"
@@ -330,51 +313,42 @@ export default function RegisterForm() {
               value={formData.age}
               onChange={handleChange}
               placeholder="18"
-              className="w-full pl-10 p-3 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+              className="form-input"
             />
           </div>
         </div>
       </div>
 
       {/* الجنس */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-          الجنس
-        </label>
-        <div className="flex gap-6">
-          {["ذكر", "أنثى", "أفضل عدم الإفصاح"].map((gender) => (
-            <label
-              key={gender}
-              className="flex items-center gap-2 cursor-pointer"
-            >
+      <div className="form-group">
+        <label className="form-label">الجنس</label>
+        <div className="form-radio-group">
+          {["ذكر", "أنثى"].map((gender) => (
+            <label key={gender} className="form-radio-label">
               <input
                 type="radio"
                 name="gender"
                 value={gender}
                 checked={formData.gender === gender}
                 onChange={handleChange}
-                className="text-blue-600"
+                className="form-radio"
               />
-              <span className="text-gray-700 dark:text-gray-300">{gender}</span>
+              <span className="form-radio-text">{gender}</span>
             </label>
           ))}
         </div>
-        {errors.gender && (
-          <p className="text-red-500 text-sm mt-1">{errors.gender}</p>
-        )}
+        {errors.gender && <p className="form-error">{errors.gender}</p>}
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="form-grid">
         {/* هدفك من الاشتراك */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            هدفك من الاشتراك
-          </label>
+        <div className="form-group">
+          <label className="form-label">هدفك من الاشتراك</label>
           <select
             name="goal"
             value={formData.goal}
             onChange={handleChange}
-            className="w-full p-3 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="form-select"
           >
             <option value="">اختر الهدف</option>
             <option>فقدان الوزن</option>
@@ -385,15 +359,13 @@ export default function RegisterForm() {
         </div>
 
         {/* مستوى خبرتك */}
-        <div>
-          <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-            مستوى خبرتك الرياضي
-          </label>
+        <div className="form-group">
+          <label className="form-label">مستوى خبرتك الرياضي</label>
           <select
             name="experience"
             value={formData.experience}
             onChange={handleChange}
-            className="w-full p-3 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+            className="form-select"
           >
             <option value="">اختر المستوى</option>
             <option>مبتدئ</option>
@@ -404,120 +376,76 @@ export default function RegisterForm() {
       </div>
 
       {/* خطط الاشتراك */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-4">
-          اختر خطتك
-        </label>
-        <div className="grid md:grid-cols-3 gap-4 mb-6">
+      <div className="form-group">
+        <label className="form-label">اختر خطتك</label>
+        <div className="form-plan-group">
           {[
             { id: "monthly", name: "شهري", price: "99 ج.م" },
-            { id: "quarterly", name: "3 شهور", price: "270 ج.م" },
+            { id: "quarterly", name: "ربع سنوي", price: "270 ج.م" },
             { id: "yearly", name: "سنوي", price: "999 ج.م", popular: true },
+            { id: "VIP", name: "VIP", price: "999 ج.م", popular: true },
           ].map((plan) => (
             <div
               key={plan.id}
-              className={`p-4 border-2 rounded-lg cursor-pointer transition ${
+              className={`form-plan ${
                 formData.plan === plan.id
-                  ? "border-blue-500 bg-blue-50 dark:bg-blue-900/30"
-                  : "border-gray-300 hover:border-gray-400"
-              } ${plan.popular ? "ring-2 ring-yellow-400" : ""}`}
+                  ? "form-plan-selected"
+                  : "form-plan-unselected"
+              } ${plan.popular ? "form-plan-popular" : ""}`}
               onClick={() =>
                 setFormData((prev) => ({ ...prev, plan: plan.id }))
               }
             >
-              {plan.popular && (
-                <span className="block text-xs text-center text-yellow-600 font-bold mb-1">
-                  الأفضل
-                </span>
-              )}
-              <p className="font-semibold text-gray-800 dark:text-white">
-                {plan.name}
-              </p>
-              <p className="text-blue-600 dark:text-blue-400 font-bold">
-                {plan.price}
-              </p>
+              {plan.popular}
+              <p className="form-plan-name">{plan.name}</p>
+              <p className="form-plan-price">{plan.price}</p>
             </div>
           ))}
         </div>
       </div>
 
-      {/* رفع صورة شخصية */}
-      <div>
-        <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-1">
-          رفع صورة شخصية (اختياري)
-        </label>
-        <div className="flex items-center gap-4">
-          {formData.avatar ? (
-            <img
-              src={formData.avatar}
-              alt="الصورة الشخصية"
-              className="w-16 h-16 rounded-full object-cover"
-            />
-          ) : (
-            <div className="w-16 h-16 bg-gray-200 dark:bg-gray-700 rounded-full flex items-center justify-center">
-              <span className="text-gray-500">+</span>
-            </div>
-          )}
-          <input
-            type="file"
-            accept="image/*"
-            onChange={handleFileChange}
-            className="flex-1"
-          />
-        </div>
-      </div>
-
       {/* الموافقة على الشروط */}
-      <div>
-        <label className="flex items-start gap-2 cursor-pointer">
+      <div className="form-group">
+        <label className="form-checkbox-label">
           <input
             type="checkbox"
             name="terms"
             checked={formData.terms}
             onChange={handleChange}
-            className="mt-1 text-blue-600"
+            className="form-checkbox"
           />
-          <span className="text-gray-700 dark:text-gray-300 text-sm">
+          <span className="form-checkbox-text">
             أوافق على{" "}
-            <a href="#" className="text-blue-600 hover:underline">
+            <a href="#" className="form-link">
               الشروط والأحكام
             </a>{" "}
             الخاصة بالخدمة.
           </span>
         </label>
-        {errors.terms && (
-          <p className="text-red-500 text-sm mt-1">{errors.terms}</p>
-        )}
+        {errors.terms && <p className="form-error">{errors.terms}</p>}
       </div>
 
       {/* رسالة النجاح/الخطأ */}
       {message && (
         <div
-          className={`p-3 text-center rounded-lg text-sm ${
+          className={
             message.includes("نجاح")
-              ? "bg-green-100 text-green-800"
-              : "bg-red-100 text-red-800"
-          }`}
+              ? "form-message-success"
+              : "form-message-error"
+          }
         >
           {message}
         </div>
       )}
 
       {/* زر الإرسال (مع حالة التحميل) */}
-      <button
-        type="submit"
-        disabled={loading}
-        className="w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:opacity-70 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition"
-      >
+      <button type="submit" disabled={loading} className="form-submit-button">
         {loading ? "جاري التسجيل..." : "إنشاء الحساب"}
       </button>
 
-      <p className="text-center text-gray-600 dark:text-gray-400">
+      <p className="form-login-text">
         لديك حساب بالفعل؟{" "}
-        <a
-          href="/auth/login"
-          className="text-blue-600 hover:underline font-medium"
-        >
+        <a href="/auth/login" className="form-login-link">
           سجل الدخول
         </a>
       </p>

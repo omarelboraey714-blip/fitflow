@@ -1,0 +1,207 @@
+
+# مسار فولدر css
+$cssFolder = "D:\VS project\fitflow-next\src\components\css"
+
+# لو الفولدر مش موجود هيعمله
+if (-not (Test-Path $cssFolder)) {
+    New-Item -Path $cssFolder -ItemType Directory
+}
+
+# يجيب كل ملفات JSX في المجلد الحالي
+$jsxFiles = Get-ChildItem -Path . -Filter *.jsx -File
+
+foreach ($file in $jsxFiles) {
+    $cssFileName = [System.IO.Path]::GetFileNameWithoutExtension($file.Name) + ".css"
+    $cssFilePath = Join-Path $cssFolder $cssFileName
+    
+    # يعمل ملف CSS فاضي بنفس الاسم لو مش موجود
+    if (-not (Test-Path $cssFilePath)) {
+        New-Item -Path $cssFilePath -ItemType File | Out-Null
+        Write-Host "تم إنشاء: $cssFileName"
+    }
+    else {
+        Write-Host "موجود بالفعل: $cssFileName"
+    }
+}
+
+
+
+
+####################################################################
+
+1. صفحة الـ Dashboard (لوحة التحكم للاعب)
+
+أول صفحة يشوفها المستخدم بعد تسجيل الدخول.
+
+تحتوي على:
+
+نظرة عامة على التقدم (Progress Bar) في التمارين أو البرامج التدريبية.
+
+عدد النقاط أو الإنجازات اللي حصل عليها.
+
+جدول الحصص القادمة أو الأحداث الرياضية.
+
+إشعارات أو رسائل من الكابتن أو الإدارة.
+
+تصميم حيّ مع أنيميشن دخول البطاقات، وألوان قوية مرتبطة بالبراند.
+
+2. صفحة العضويات / الاشتراكات (Memberships)
+
+عرض جميع الباقات (شهرية، ربع سنوية، سنوية).
+
+تفاصيل كل باقة (السعر، المميزات، عدد الجلسات، المدربين).
+
+زر "اشترك الآن" مع أنيميشن Hover وتأثيرات Framer Motion عند فتح صفحة الدفع.
+
+3. صفحة البرامج التدريبية (Programs)
+
+قائمة بالبرامج التدريبية:
+
+كارد لكل برنامج (صورة + وصف قصير + المدة + مستوى الصعوبة).
+
+عند الضغط على برنامج → يفتح صفحة التفاصيل الخاصة به.
+
+4. صفحة تفاصيل البرنامج (Program Details)
+
+فيديو أو صور لشرح التمارين.
+
+جدول الحصص.
+
+أسماء المدربين.
+
+زر "انضم للبرنامج".
+
+5. صفحة المدربين (Trainers)
+
+قائمة بكل المدربين مع صورة وبايو قصير.
+
+زر "عرض الملف الشخصي" لكل مدرب.
+
+6. صفحة البروفايل (Profile)
+
+صورة شخصية.
+
+بيانات المستخدم (اسم، إيميل، نوع الاشتراك، تاريخ الانضمام).
+
+إمكانية تعديل البيانات وكلمة المرور.
+
+عرض الإنجازات (عدد الحصص، الأوزان، القياسات).
+
+7. صفحة المتجر (Shop) (لو البراند بيبيع منتجات جيم)
+
+عرض المنتجات (ملابس، معدات، مكملات غذائية).
+
+فلتر حسب النوع والسعر.
+
+صفحة تفاصيل المنتج مع زر الشراء.
+
+8. صفحة التواصل (Contact Us)
+
+خريطة لموقع الجيم.
+
+معلومات التواصل.
+
+فورم إرسال رسالة.
+
+
+
+
+##########################################################
+
+# تحديد أسماء الملفات
+$files = @(
+    "TrainersHeader.jsx"
+ "TrainersFilterBar.jsx"
+"TrainerCard.jsx"
+ "TrainersGrid.jsx"
+"TrainersCTA.jsx"
+)
+
+# المسار اللي هتتحفظ فيه الملفات (عدله لو حابب)
+$path = "src\components\prgramDetails"
+
+# إنشاء المجلد لو مش موجود
+if (-not (Test-Path $path)) {
+    New-Item -ItemType Directory -Path $path | Out-Null
+}
+
+# إنشاء الملفات بدون تكرار
+foreach ($file in $files) {
+    $fullPath = Join-Path $path $file
+    if (-not (Test-Path $fullPath)) {
+        New-Item -ItemType File -Path $fullPath | Out-Null
+        Write-Host "تم إنشاء الملف: $file"
+    } else {
+        Write-Host "⚠ الملف موجود بالفعل: $file"
+    }
+}
+
+
+
+
+
+################################################################################
+
+// lib/programs.js
+export const programs = [
+  {
+    id: 1,
+    name: "حرق الدهون السريع",
+    goal: "loss",
+    duration: "4 أسابيع",
+    level: "مبتدئ",
+    image: "/images/program-fatburn.webp",
+    features: ["تمارين HIIT", "نظام غذائي", "متابعة أسبوعية"],
+    difficulty: 3,
+  },
+  {
+    id: 2,
+    name: "زيادة العضلات",
+    goal: "muscle",
+    duration: "8 أسابيع",
+    level: "متوسط",
+    image: "/images/program-muscle.webp",
+    features: ["تدريبات تضخيم", "بروتين يومي", "استشفاء مثالي"],
+    difficulty: 4,
+  },
+  {
+    id: 3,
+    name: "اللياقة العامة",
+    goal: "fitness",
+    duration: "12 أسبوع",
+    level: "مبتدئ",
+    image: "/images/program-fitness.webp",
+    features: ["تمارين متنوعة", "تقوية القلب", "تحفيز مستمر"],
+    difficulty: 2,
+  },
+  {
+    id: 4,
+    name: "التدريب الشخصي",
+    goal: "personal",
+    duration: "6 شهور",
+    level: "جميع المستويات",
+    image: "/images/program-personal.webp",
+    features: ["مُدرب خاص", "خطة مخصصة", "دعم يومي"],
+    difficulty: 5,
+  },
+  {
+    id: 5,
+    name: "تمارين منزلية",
+    goal: "fitness",
+    duration: "4 أسابيع",
+    level: "مبتدئ",
+    image: "/images/program-home.webp",
+    features: ["بدون أجهزة", "مرونة في الوقت", "متابعات أسبوعية"],
+    difficulty: 2,
+  },
+  {
+    id: 6,
+    name: "برنامج التحول الشامل",
+    goal: "transformation",
+    duration: "12 أسبوع",
+    level: "متوسط",
+    image: "/images/program-transformation.webp",
+    features: ["تدريب + تغذية", "تغيير نمط الحياة", "نتائج مضمونة"],
+    difficulty: 5,
+  },
+];
