@@ -70,7 +70,7 @@ export default function MotivationSection() {
           transition={{ duration: 0.8, ease: "easeInOut" }}
           className="motivation-blockquote"
         >
-          {currentQuote}
+          {currentQuote}git config --global user.name "Your Name"
         </motion.blockquote>
         <Link href="#programs-section">
           <motion.button
