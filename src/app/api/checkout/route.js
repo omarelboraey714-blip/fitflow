@@ -9,7 +9,6 @@ export async function POST(request) {
   try {
     // 1. اقرأ البيانات من الطلب
     const body = await request.json();
-
     const { item, customer, paymentMethod, total } = body;
 
     // 2. تحقق من البيانات
@@ -43,67 +42,71 @@ export async function POST(request) {
     }
 
     // 5. أدخل الطلب في قاعدة البيانات
-    const { error } = await supabase.from("orders").insert({
-      item_type: item.type,
-      item_id: item.id,
-      item_name: item.name,
-      item_price: item_price,
-      customer_name,
-      customer_email,
-      customer_phone,
-      customer_address,
-      payment_method: paymentMethod,
-      status: "pending",
-    });
+    const { data, error } = await supabase
+      .from("orders")
+      .insert({
+        item_type: item.type,
+        item_id: item.id,
+        item_name: item.name,
+        item_price: item_price,
+        customer_name,
+        customer_email,
+        customer_phone,
+        customer_address,
+        payment_method: paymentMethod,
+        status: "pending",
+      })
+      .select("id"); // نرجّع id الطلب
 
     if (error) {
       console.error("خطأ في حفظ الطلب:", error);
       return NextResponse.json({ error: "فشل حفظ الطلب" }, { status: 500 });
     }
 
-    // 6. أعد استجابة ناجحة
+    const orderId = data?.[0]?.id;
+
+    // 6. أرسل إيميل تأكيد لو فيه ايميل
+    if (customer_email) {
+      await sendOrderConfirmation(customer_email, {
+        customer_name,
+        customer_email,
+        item_name: item.name,
+        item_price,
+        payment_method: paymentMethod,
+        id: orderId,
+      });
+    }
+
+    // 7. أعد استجابة ناجحة
     return NextResponse.json({
       success: true,
       message: "تم حفظ الطلب بنجاح",
-      orderId: "تم إنشاء الطلب", // في الواقع، Supabase يرجع `id` لو طلبت
+      orderId,
     });
   } catch (err) {
     console.error("خطأ داخلي:", err);
     return NextResponse.json({ error: "حدث خطأ داخلي" }, { status: 500 });
   }
 }
-// بعد أن تتأكد أن الطلب نُسخ بنجاح
-if (!error) {
-  // أرسل إيميل
-  if (customer_email) {
-    sendOrderConfirmation(customer_email, {
-      customer_name,
-      customer_email,
-      item_name: item.name,
-      item_price: item_price,
-      payment_method: paymentMethod,
-      id: result.data[0]?.id, // لو عرفت الـ id
-    });
-  }
-}
 
 // إعداد ناقل البريد (Gmail)
-const transporter = nodemailer.createTransporter({
+const transporter = nodemailer.createTransport({
   service: "gmail",
   auth: {
-    user: process.env.EMAIL_USER, // مثلاً: you@gmail.com
-    pass: process.env.EMAIL_APP_PASS, // كلمة مرور التطبيق (App Password)
+    user: process.env.EMAIL_USER, // إيميلك
+    pass: process.env.EMAIL_APP_PASS, // App Password
   },
 });
 
 // دالة لإرسال الإيميل
 async function sendOrderConfirmation(to, orderData) {
-  const { customer_name, item_name, item_price, payment_method } = orderData;
+  const { customer_name, item_name, item_price, payment_method, id } =
+    orderData;
 
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to,
-    subject: `تم تأكيد طلبك في FitFlow - #${orderData.id || "معلق"}`,
+    subject: `تم تأكيد طلبك في FitFlow - #${id || "معلق"}`,
     html: `
       <div style="font-family: Arial, sans-serif; direction: rtl; text-align: right; padding: 20px; background: #f9f9f9;">
         <h2 style="color: #1e3a8a;">مرحبًا ${customer_name}،</h2>
@@ -125,8 +128,8 @@ async function sendOrderConfirmation(to, orderData) {
   try {
     await transporter.sendMail(mailOptions);
     console.log("✅ تم إرسال الإيميل بنجاح");
-  } catch (error) {
-    console.error("❌ فشل إرسال الإيميل:", error);
-    // لا تُفشل الطلب لو الإيميل فشل
+  } catch (err) {
+    console.error("❌ فشل إرسال الإيميل:", err);
+    // ما نفشلش الطلب لو الايميل وقع
   }
 }
