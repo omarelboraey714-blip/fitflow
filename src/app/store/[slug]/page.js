@@ -16,7 +16,7 @@ export default async function ProductDetailPage({ params }) {
   const { slug } = await params;
 
   // جلب المنتج
-  const { product } = await supabase
+  const { data: product, error: productError } = await supabase
     .from("products")
     .select("*")
     .eq("slug", slug)
@@ -27,7 +27,7 @@ export default async function ProductDetailPage({ params }) {
   }
 
   // جلب التقييمات
-  const { reviews } = await supabase
+  const { data: reviews, error: reviewsError } = await supabase
     .from("product_reviews")
     .select("user_name, rating, comment, created_at")
     .eq("product_id", product.id)
@@ -42,7 +42,7 @@ export default async function ProductDetailPage({ params }) {
       : "جديد";
 
   // منتجات مقترحة (نفس الفئة)
-  const { related } = await supabase
+  const { data: related, error: relatedError } = await supabase
     .from("products")
     .select("id, name, price, image, slug, rating")
     .eq("category", product.category)
@@ -65,7 +65,13 @@ export default async function ProductDetailPage({ params }) {
 
 // توليد slugs لكل المنتجات
 export async function generateStaticParams() {
-  const { products } = await supabase.from("products").select("slug");
+  const { data: products, error } = await supabase
+    .from("products")
+    .select("slug");
+
+  if (error || !products) {
+    return []; // fallback
+  }
 
   return products.map((p) => ({ slug: p.slug }));
 }
