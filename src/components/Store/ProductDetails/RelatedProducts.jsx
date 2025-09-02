@@ -1,6 +1,6 @@
 "use client";
 
-import ProductCard from "../ProductsGrid/ProductCard";
+import ProductCard from "../ProductCard";
 import "@/components/css/Store/ProductDetails/RelatedProducts.css";
 
 export default function RelatedProducts({ products = [] }) {
