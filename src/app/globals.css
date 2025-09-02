@@ -58,7 +58,7 @@
   }
 
   body {
-    font-family: "Cairo", sans-serif;
+    font-family: "Cairo", sans-serif !important;
   }
 }
 
@@ -77,4 +77,8 @@ html {
 }
 .section-title {
   @apply text-3xl md:text-4xl font-bold text-gray-800 dark:text-white mb-12 text-center;
+}
+
+button {
+  @apply cursor-pointer;
 }

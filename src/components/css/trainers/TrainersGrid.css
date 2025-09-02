@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+.trainers-grid-section {
+  @apply py-12 px-6;
+}
+
+.trainers-grid-container {
+  @apply max-w-7xl mx-auto;
+}
+
+.trainers-grid {
+  @apply grid md:grid-cols-3 gap-8;
+}

@@ -43,10 +43,16 @@ export async function POST(request) {
     // تحقق من البيانات
     const validated = registerSchema.safeParse(body);
     if (!validated.success) {
+      const errors = validated.error.issues.map((issue) => ({
+        path: issue.path.join("."),
+        message: issue.message,
+      }));
+      console.error("Validation Errors:", errors);
       return Response.json(
         {
           success: false,
-          message: validated.error?.errors?.[0]?.message || "بيانات غير صحيحة",
+          message: "بيانات غير صحيحة",
+          errors,
         },
         { status: 400 }
       );
@@ -98,8 +104,9 @@ export async function POST(request) {
     ]);
 
     if (error) {
+      console.error("Supabase Insert Error:", error);
       return Response.json(
-        { success: false, message: "حدث خطأ أثناء التسجيل" },
+        { success: false, message: `حدث خطأ أثناء التسجيل: ${error.message}` },
         { status: 500 }
       );
     }

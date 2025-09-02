@@ -1,38 +1,54 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { FaClock, FaBolt, FaShieldAlt, FaGem } from "react-icons/fa";
+import Link from "next/link";
+import "../css/membership/MembershipCard.css";
+
+const iconMap = {
+  FaClock: <FaClock className="membership-card-icon" />,
+  FaBolt: <FaBolt className="membership-card-icon" />,
+  FaShieldAlt: <FaShieldAlt className="membership-card-icon" />,
+  FaGem: <FaGem className="membership-card-icon" />,
+};
 
 export default function MembershipCard({ plan }) {
+  if (!plan) return null;
+
+  const IconComponent = iconMap[plan.icon_name] || (
+    <FaClock className="membership-card-icon" />
+  );
+
   return (
     <motion.div
-      className="bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl shadow-2xl text-white relative overflow-hidden"
+      className="membership-card"
       style={{
-        background: plan.gradient,
+        background:
+          plan.gradient || "linear-gradient(135deg, #1e3a8a, #1e40af)",
       }}
       whileHover={{
         scale: 1.03,
         rotate: 1,
         boxShadow:
-          "0 20px 40px rgba(0,0,0,0.3), 0 0 30px rgba(255,255,255,0.1)",
+          "0 12px 24px rgba(0,0,0,0.2), 0 0 15px rgba(255,255,255,0.08)",
       }}
-      transition={{ type: "spring", stiffness: 300 }}
+      transition={{ type: "spring", stiffness: 400, damping: 15 }}
     >
-      {/* زاوية زخرفية */}
-      <div className="absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-bl-full"></div>
+      <div className="membership-card-decoration"></div>
 
-      <h3 className="text-2xl font-bold mb-2">{plan.name}</h3>
-      <div className="text-4xl font-extrabold mb-6">{plan.price}</div>
+      <h3 className="membership-card-title">{plan.name}</h3>
+      <div className="membership-card-price">{plan.price}</div>
 
-      <div className="flex items-center gap-3 mb-6">
-        {plan.icon}
-        <span className="text-lg">{plan.subtitle}</span>
+      <div className="membership-card-subtitle-container">
+        {IconComponent}
+        <span className="membership-card-subtitle">{plan.subtitle}</span>
       </div>
 
-      <ul className="space-y-3 mb-8">
-        {plan.features.map((feature, i) => (
-          <li key={i} className="flex items-center gap-2">
+      <ul className="membership-card-features">
+        {plan.features.map((feature, index) => (
+          <li key={`feature-${index}`} className="membership-card-feature">
             <svg
-              className="w-5 h-5 text-green-400"
+              className="membership-card-check-icon"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -44,18 +60,21 @@ export default function MembershipCard({ plan }) {
                 d="M5 13l4 4L19 7"
               />
             </svg>
-            <span className="text-gray-200">{feature}</span>
+            <span className="membership-card-feature-text">{feature}</span>
           </li>
         ))}
       </ul>
 
-      <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        className="w-full py-3 bg-white text-black font-semibold rounded-xl shadow-lg hover:shadow-2xl transition"
-      >
-        اشترك الآن
-      </motion.button>
+      {/* ربط الزر بصفحة الدفع */}
+      <Link href={`/checkout?item=${plan.id}&type=membership`} passHref>
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="membership-card-button"
+        >
+          اشترك الآن
+        </motion.button>
+      </Link>
     </motion.div>
   );
 }

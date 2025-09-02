@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+.trainers-header {
+  @apply py-20 px-6 text-center;
+}
+
+.trainers-header-title {
+  @apply text-4xl md:text-5xl font-bold text-white mb-4;
+}
+
+.trainers-header-subtitle {
+  @apply text-xl text-gray-300 max-w-2xl mx-auto;
+}

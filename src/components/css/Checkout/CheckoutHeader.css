@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+.checkout-header {
+  @apply py-4 px-6 flex justify-between items-center border-b border-gray-700;
+}
+
+.checkout-header-logo {
+  @apply text-2xl font-bold text-white;
+}
+
+.checkout-header-back-button {
+  @apply px-4 py-2 text-gray-300 hover:text-white transition;
+}

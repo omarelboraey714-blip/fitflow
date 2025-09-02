@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+.enroll-sticky {
+  @apply fixed z-20 bottom-0 left-0 right-0 bg-gradient-to-r from-blue-600 to-green-500 text-white p-4 shadow-lg md:static md:p-6;
+}
+
+.enroll-sticky-container {
+  @apply max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center;
+}
+
+.enroll-sticky-container > div {
+  @apply flex items-center gap-2;
+}
+
+.enroll-sticky-price {
+  @apply text-2xl;
+}
+
+.enroll-sticky-discount {
+  @apply text-sm line-through text-gray-300 ml-2;
+}
+
+.enroll-sticky-button {
+  @apply mt-2 md:mt-0 px-6 py-3 bg-white text-blue-600 font-semibold rounded-xl hover:bg-gray-100;
+}

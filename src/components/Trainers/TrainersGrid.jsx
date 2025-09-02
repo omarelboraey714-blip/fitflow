@@ -2,24 +2,44 @@
 
 import { motion } from "framer-motion";
 import TrainerCard from "./TrainerCard";
+import "@/components/css/trainers/TrainersGrid.css";
 
-export default function TrainersGrid({ trainers }) {
+export default function TrainersGrid({ trainers, isLoading }) {
   return (
-    <section className="py-12 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section className="trainers-grid-section">
+      <div className="trainers-grid-container">
         <motion.div
-          className="grid md:grid-cols-3 gap-8"
+          className="trainers-grid"
           initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
+          animate="visible"
           variants={{
             hidden: { opacity: 0 },
-            visible: { opacity: 1, transition: { staggerChildren: 0.1 } },
+            visible: { opacity: 1, transition: { staggerChildren: 0.15 } },
           }}
         >
-          {trainers.map((trainer) => (
-            <TrainerCard key={trainer.id} trainer={trainer} />
-          ))}
+          {isLoading
+            ? Array(3)
+                .fill()
+                .map((_, index) => (
+                  <TrainerCard
+                    key={index}
+                    trainer={{
+                      id: index,
+                      name: "",
+                      avatar: "",
+                      specialty: "",
+                      experience: "",
+                    }}
+                    isLoading={true}
+                  />
+                ))
+            : trainers.map((trainer) => (
+                <TrainerCard
+                  key={trainer.id}
+                  trainer={trainer}
+                  isLoading={false}
+                />
+              ))}
         </motion.div>
       </div>
     </section>

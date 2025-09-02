@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+.order-summary-container {
+  @apply bg-gray-800 p-6 rounded-2xl;
+}
+
+.order-summary-title {
+  @apply text-xl font-bold text-white mb-6;
+}
+
+.order-summary-items {
+  @apply space-y-4;
+}
+
+.order-summary-item {
+  @apply flex gap-4;
+}
+
+.order-summary-item-image {
+  @apply w-16 h-16 object-cover rounded;
+}
+
+.order-summary-item-details {
+  @apply flex-1;
+}
+
+.order-summary-item-name {
+  @apply text-white font-semibold;
+}
+
+.order-summary-item-price {
+  @apply text-gray-400;
+}
+
+.order-summary-footer {
+  @apply border-t border-gray-700 mt-6 pt-4 space-y-2;
+}
+
+.order-summary-subtotal {
+  @apply flex justify-between text-gray-300;
+}
+
+.order-summary-shipping {
+  @apply flex justify-between text-gray-300;
+}
+
+.order-summary-total {
+  @apply flex justify-between text-xl font-bold text-white;
+}

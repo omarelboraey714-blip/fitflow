@@ -12,7 +12,7 @@ export default function RegisterPage() {
       <div className="absolute inset-0 bg-black/70"></div>
       <div className="relative z-10  dark:bg-black/50 p-8 md:p-12 rounded-2xl shadow-2xl max-w-4xl w-full mx-6 my-20">
         <div className="text-center mb-6">
-          <div className="inline-block p-3 bg-blue-600 text-white rounded-full mb-4">
+          <div className="inline-block p-3 bg-gradient-to-r from-blue-500 to-green-500 text-white rounded-full mb-4">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-8 w-8"
@@ -28,7 +28,7 @@ export default function RegisterPage() {
               />
             </svg>
           </div>
-          <h1 className="text-3xl font-bold text-gray-800 dark:text-white">
+          <h1 className="text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-500">
             FitFlow
           </h1>
         </div>

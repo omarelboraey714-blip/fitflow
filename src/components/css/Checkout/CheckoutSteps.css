@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+.checkout-steps-section {
+  @apply py-8 px-6;
+}
+
+.checkout-steps-container {
+  @apply max-w-4xl mx-auto;
+}
+
+.checkout-steps-list {
+  @apply flex items-center;
+}
+
+.checkout-step-item {
+  @apply flex items-center flex-1;
+}
+
+.checkout-step-icon {
+  @apply w-10 h-10 rounded-full flex items-center justify-center text-lg font-bold;
+}
+
+.checkout-step-icon-active {
+  @apply bg-gradient-to-r from-blue-600 to-green-500 text-white;
+}
+
+.checkout-step-icon-inactive {
+  @apply bg-gray-700 text-gray-400;
+}
+
+.checkout-step-connector {
+  @apply flex-1 h-1 mx-2;
+}

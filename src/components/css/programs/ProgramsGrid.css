@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+.programs-section {
+  @apply py-12 px-6;
+}
+
+.programs-container {
+  @apply max-w-7xl mx-auto;
+}
+
+.programs-grid {
+  @apply grid md:grid-cols-2 lg:grid-cols-3 gap-8;
+}
+
+.pagination-controls {
+  @apply flex justify-between mt-8 gap-2.5;
+}
+
+.pagination-button {
+  @apply mt-8 flex justify-center space-x-4 font-bold hover:text-green-500;
+}

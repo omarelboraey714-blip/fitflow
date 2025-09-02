@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+.confirm-button {
+  @apply w-full max-w-md py-4 bg-gradient-to-r from-blue-600 to-green-500 text-white font-semibold rounded-xl relative overflow-hidden;
+}
+
+.confirm-button-loading {
+  @apply flex items-center justify-center;
+}
+
+.confirm-button-spinner {
+  @apply w-6 h-6 border-2 border-t-transparent border-white rounded-full animate-spin;
+}
+
+.confirm-button-icon {
+  @apply mr-2;
+}
+
+.confirm-button-overlay {
+  @apply absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-20 transition;
+}

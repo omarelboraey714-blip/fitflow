@@ -1,0 +1,33 @@
+@import "tailwindcss";
+
+.recommended-section {
+  @apply py-16 px-6 bg-gray-900;
+}
+
+.recommended-container {
+  @apply max-w-7xl mx-auto;
+}
+
+.recommended-title {
+  @apply text-2xl font-bold text-white mb-8;
+}
+
+.recommended-grid {
+  @apply grid md:grid-cols-2 gap-8;
+}
+
+.recommended-card {
+  @apply flex items-center gap-6 bg-gray-800 p-6 rounded-2xl;
+}
+
+.recommended-image {
+  @apply w-20 h-20 object-cover rounded-lg;
+}
+
+.recommended-name {
+  @apply text-lg font-bold text-white;
+}
+
+.recommended-price {
+  @apply text-blue-400 font-semibold;
+}

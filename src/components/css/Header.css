@@ -9,11 +9,11 @@
 }
 
 .nav-desktop {
-  @apply hidden md:flex gap-8 items-center;
+  @apply hidden md:flex gap-8 items-center order-1;
 }
 
 .nav-link {
-  @apply text-gray-200 hover:text-white transition;
+  @apply text-gray-200 transition hover:text-blue-600;
 }
 
 .nav-link-auth {
@@ -29,11 +29,11 @@
 }
 
 .menu-button {
-  @apply md:hidden text-white cursor-pointer;
+  @apply md:hidden text-white cursor-pointer order-2;
 }
 
 .logo {
-  @apply text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-500;
+  @apply text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-green-500 order-3;
 }
 
 .nav-mobile {

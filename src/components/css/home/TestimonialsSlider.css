@@ -17,11 +17,11 @@
 }
 
 .testimonials-slider {
-  @apply flex overflow-x-auto space-x-6 pb-6 scroll-smooth;
+  @apply flex overflow-x-auto space-x-6 pb-6 scroll-smooth overflow-x-scroll [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden;
 }
 
 .testimonials-slider::-webkit-scrollbar {
-  @apply hidden; /* Replaces scrollbar-hide */
+  @apply hidden;
 }
 
 .testimonial-card {

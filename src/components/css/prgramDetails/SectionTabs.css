@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+.section-tabs-nav {
+  @apply sticky top-16 bg-gray-900 z-10 py-4;
+}
+
+.section-tabs-container {
+  @apply flex overflow-x-auto space-x-6 px-2 overflow-x-scroll [scrollbar-width:none] [-ms-overflow-style:none] [&::-webkit-scrollbar]:hidden;
+}
+
+.section-tab-button {
+  @apply whitespace-nowrap px-4 py-2 rounded-lg transition;
+}
+
+.section-tab-button-active {
+  @apply bg-blue-600 text-white;
+}
+
+.section-tab-button-inactive {
+  @apply text-gray-400 hover:text-white;
+}

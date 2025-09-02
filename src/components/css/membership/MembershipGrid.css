@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+.membership-grid-section {
+  @apply py-16 px-6;
+}
+
+.membership-grid-container {
+  @apply max-w-7xl mx-auto;
+}
+
+.membership-grid {
+  @apply grid md:grid-cols-2 lg:grid-cols-4 gap-8;
+}

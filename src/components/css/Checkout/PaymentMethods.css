@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+.payment-methods-section {
+  @apply py-8 px-6;
+}
+
+.payment-methods-container {
+  @apply max-w-4xl mx-auto;
+}
+
+.payment-methods-title {
+  @apply text-2xl font-bold text-white mb-6;
+}
+
+.payment-methods-grid {
+  @apply grid md:grid-cols-3 gap-6;
+}
+
+.payment-method-card {
+  @apply p-6 rounded-2xl cursor-pointer transition;
+}
+
+.payment-method-card-selected-visa {
+  @apply bg-gradient-to-br from-blue-600 to-indigo-800;
+}
+
+.payment-method-card-selected-vodafone {
+  @apply bg-gradient-to-br from-green-600 to-emerald-800;
+}
+
+.payment-method-card-selected-bank {
+  @apply bg-gradient-to-br from-gray-600 to-gray-800;
+}
+
+.payment-method-card-unselected {
+  @apply bg-gray-800;
+}
+
+.payment-method-icon {
+  @apply text-4xl mb-2;
+}
+
+.payment-method-title {
+  @apply font-bold text-white;
+}
+
+.payment-method-details {
+  @apply mt-4 space-y-4;
+}
+
+.payment-method-input {
+  @apply w-full px-4 py-3 bg-white/20 border border-white/30 rounded-lg text-white placeholder-white/70;
+}
+
+.payment-method-input-grid {
+  @apply grid grid-cols-2 gap-4;
+}

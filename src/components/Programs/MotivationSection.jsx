@@ -1,46 +1,85 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
+import { useState, useEffect } from "react";
+import { createClient } from "@supabase/supabase-js";
+import useSWR from "swr";
+import "@/components/css/programs/MotivationSection.css";
+
+const fetcher = (url) =>
+  fetch(url).then((res) => {
+    if (!res.ok) throw new Error("فشل تحميل الاقتباسات");
+    return res.json();
+  });
 
 export default function MotivationSection() {
+  const [currentQuote, setCurrentQuote] = useState("");
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  const supabase = createClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY
+  );
+
+  const { data: quotes, error } = useSWR("/api/quotes", async () => {
+    const { data, error } = await supabase
+      .from("motivation_quotes")
+      .select("quote");
+
+    if (error) throw error;
+    return data.map((q) => q.quote);
+  });
+
+  useEffect(() => {
+    if (quotes && quotes.length > 0) {
+      setCurrentQuote(quotes[0]);
+      const interval = setInterval(() => {
+        setCurrentIndex((prevIndex) => (prevIndex + 1) % quotes.length);
+      }, 10000);
+      return () => clearInterval(interval);
+    }
+  }, [quotes]);
+
+  useEffect(() => {
+    if (quotes && quotes.length > 0) {
+      setCurrentQuote(quotes[currentIndex]);
+    }
+  }, [currentIndex, quotes]);
+
+  if (error) {
+    return <p>خطأ في تحميل الاقتباسات</p>;
+  }
+
   return (
     <section
-      className="py-24 px-6 text-center relative"
+      className="motivation-section"
       style={{
         backgroundImage: "url('/images/motivation-bg.webp')",
         backgroundSize: "cover",
         backgroundPosition: "center",
       }}
     >
-      <div className="absolute inset-0 bg-black/70"></div>
-      <div className="relative z-10 max-w-3xl mx-auto">
+      <div className="motivation-overlay"></div>
+      <div className="motivation-content">
         <motion.blockquote
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-2xl md:text-3xl font-bold text-white mb-8 italic"
+          key={currentQuote} // يضمن إعادة تشغيل الأنيميشن عند تغيير الاقتباس
+          initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+          animate={{ opacity: 1, scale: 1, rotate: 0 }}
+          exit={{ opacity: 0, scale: 0.8, rotate: 5 }}
+          transition={{ duration: 0.8, ease: "easeInOut" }}
+          className="motivation-blockquote"
         >
-          "القوة لا تأتي من الجسد، بل من الإرادة"
+          {currentQuote}
         </motion.blockquote>
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          animate={{
-            backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-          }}
-          transition={{
-            repeat: Infinity,
-            repeatType: "loop",
-            duration: 3,
-            ease: "linear",
-          }}
-          style={{
-            background: "linear-gradient(90deg, #1e40af, #059669, #c2410c)",
-            backgroundSize: "200% 100%",
-          }}
-          className="px-8 py-4 text-white font-semibold rounded-xl shadow-lg"
-        >
-          ابدأ اليوم
-        </motion.button>
+        <Link href="#programs-section">
+          <motion.button
+            className="motivation-button"
+            aria-label="ابدأ رحلتك التدريبية اليوم"
+          >
+            ابدأ اليوم
+          </motion.button>
+        </Link>
       </div>
     </section>
   );

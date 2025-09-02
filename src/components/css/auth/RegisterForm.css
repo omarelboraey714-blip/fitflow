@@ -21,7 +21,11 @@
 }
 
 .form-input {
-  @apply w-full pl-10 p-3 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500;
+  @apply w-full pl-10 p-3 border border-gray-300 dark:bg-gray-700 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 appearance-none [appearance:textfield] [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield; /* لدعم Firefox */
 }
 
 .form-input-password {
@@ -77,7 +81,7 @@
 }
 
 .form-plan-popular {
-  @apply ring-2 ring-yellow-400;
+  @apply border-green-400;
 }
 
 .form-plan-popular-label {
@@ -137,7 +141,14 @@
 }
 
 .form-submit-button {
-  @apply w-full py-3 bg-blue-600 hover:bg-blue-700 disabled:opacity-70 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition;
+  @apply w-full cursor-pointer py-3 text-white font-semibold rounded-lg 
+         disabled:opacity-70 relative overflow-hidden 
+         bg-gradient-to-r from-blue-600 via-green-500 to-blue-500 
+         bg-[length:200%_200%] transition-all duration-500;
+}
+
+.form-submit-button:hover {
+  background-position: 100% 0;
 }
 
 .form-login-text {

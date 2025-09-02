@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+.reviews-section {
+  @apply my-12;
+}
+
+.reviews-heading {
+  @apply text-2xl font-bold mb-6;
+}
+
+.reviews-list {
+  @apply space-y-4;
+}
+
+.review-card {
+  @apply bg-gray-800 p-4 rounded-xl;
+}
+
+.review-header {
+  @apply flex justify-between;
+}
+
+.review-text {
+  @apply text-gray-300 mt-2;
+}
+
+.review-date {
+  @apply text-gray-500;
+}

@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+.week-accordion-section {
+  @apply my-12;
+}
+
+.week-accordion-heading {
+  @apply text-2xl font-bold mb-6;
+}
+
+.week-accordion-item {
+  @apply mb-4;
+}
+
+.week-accordion-button {
+  @apply w-full text-left bg-gray-800 p-4 rounded-lg font-semibold;
+}
+
+.week-accordion-content {
+  @apply mt-2 space-y-2;
+}
+
+.week-accordion-session {
+  @apply bg-gray-700 p-3 rounded-lg;
+}
+
+.week-accordion-session-goal {
+  @apply text-sm text-gray-300;
+}

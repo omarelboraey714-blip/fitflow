@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+.customer-reviews-section {
+  @apply py-20 px-6 bg-black;
+}
+
+.customer-reviews-container {
+  @apply max-w-5xl mx-auto text-center;
+}
+
+.customer-reviews-title {
+  @apply text-3xl font-bold text-white mb-12;
+}
+
+.customer-reviews-list {
+  @apply flex overflow-x-auto space-x-6 pb-6;
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
+}
+
+.customer-reviews-list::-webkit-scrollbar {
+  display: none; /* Custom rule for scrollbar-hide */
+}
+
+.customer-review-card {
+  @apply flex-shrink-0 w-80 bg-gray-800 p-6 rounded-2xl;
+}
+
+.customer-review-avatar {
+  @apply w-16 h-16 bg-gray-700 rounded-full mx-auto mb-4;
+}
+
+.customer-review-rating {
+  @apply flex justify-center mb-2;
+}
+
+.customer-review-star {
+  @apply text-yellow-400;
+}
+
+.customer-review-text {
+  @apply text-gray-300 italic;
+}
+
+.customer-review-name {
+  @apply text-blue-400 mt-2 block;
+}

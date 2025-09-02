@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+.product-specs {
+  @apply my-12 p-6 bg-gray-800 rounded-xl;
+}
+
+.product-specs h3 {
+  @apply text-xl font-bold text-white mb-4;
+}
+
+.product-specs ul {
+  @apply space-y-3;
+}
+
+.product-specs li {
+  @apply flex justify-between py-2 border-b border-gray-700 last:border-b-0;
+}
+
+.product-specs strong {
+  @apply text-emerald-400;
+}
+
+.product-specs span {
+  @apply text-gray-300;
+}

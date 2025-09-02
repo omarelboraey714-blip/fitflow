@@ -1,0 +1,13 @@
+@import "tailwindcss";
+
+.benefits-list {
+  @apply space-y-3 my-6;
+}
+
+.benefits-list-item {
+  @apply flex items-center gap-2;
+}
+
+.benefits-list-icon {
+  @apply w-5 h-5 text-green-400;
+}

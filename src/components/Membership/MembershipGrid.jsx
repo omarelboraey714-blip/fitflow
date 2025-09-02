@@ -2,12 +2,12 @@
 
 import { motion } from "framer-motion";
 import MembershipCard from "./MembershipCard";
-import { membershipPlans } from "@/lib/plans";
+import "../css/membership/MembershipGrid.css";
 
-export default function MembershipGrid() {
+export default function MembershipGrid({ memberships = [] }) {
   return (
-    <section className="py-16 px-6">
-      <div className="max-w-7xl mx-auto">
+    <section className="membership-grid-section">
+      <div className="membership-grid-container">
         <motion.div
           initial="hidden"
           whileInView="visible"
@@ -16,11 +16,11 @@ export default function MembershipGrid() {
             hidden: { opacity: 0 },
             visible: { opacity: 1, transition: { staggerChildren: 0.2 } },
           }}
-          className="grid md:grid-cols-2 lg:grid-cols-4 gap-8"
+          className="membership-grid"
         >
-          {membershipPlans.map((plan, i) => (
+          {memberships.map((plan, i) => (
             <motion.div
-              key={i}
+              key={plan.id}
               variants={{
                 hidden: { opacity: 0, y: 30 },
                 visible: { opacity: 1, y: 0 },

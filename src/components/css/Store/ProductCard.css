@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+.product-card {
+  @apply bg-gray-800 rounded-2xl overflow-hidden shadow-lg;
+}
+
+.product-card-image-container {
+  @apply relative h-64 overflow-hidden;
+}
+
+.product-card-image {
+  @apply w-full h-full object-cover;
+}
+
+.product-card-overlay {
+  @apply absolute inset-0 bg-black/50 flex items-center justify-center;
+}
+
+.product-card-content {
+  @apply p-6;
+}
+
+.product-card-name {
+  @apply text-xl font-bold text-white;
+}
+
+.product-card-rating {
+  @apply flex items-center gap-1 my-2;
+}
+
+.product-card-star {
+  @apply text-sm;
+}
+
+.product-card-star-filled {
+  @apply text-yellow-400;
+}
+
+.product-card-star-empty {
+  @apply text-gray-600;
+}
+
+.product-card-price {
+  @apply text-lg font-bold text-blue-400;
+}

@@ -1,0 +1,51 @@
+@import "tailwindcss";
+
+.contact-form {
+  @apply bg-black/20 backdrop-blur-lg border border-gray-700 rounded-2xl p-8 space-y-6 text-white;
+}
+
+.contact-title {
+  @apply text-2xl font-bold mb-6;
+}
+
+.form-label {
+  @apply block text-sm font-medium text-gray-300 mb-1;
+}
+
+.form-input-wrapper {
+  @apply relative;
+}
+
+.form-icon {
+  @apply absolute inset-y-0 left-0 flex items-center pl-3 text-gray-400;
+}
+
+.form-input {
+  @apply w-full pl-10 pr-4 py-3 bg-gray-900 border border-gray-700 rounded-lg 
+         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition;
+}
+
+.form-select {
+  @apply w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg 
+         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-gray-200;
+}
+
+.form-textarea {
+  @apply w-full px-4 py-3 bg-gray-900 border border-gray-700 rounded-lg 
+         focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent 
+         transition resize-none;
+}
+
+.form-submit-btn {
+  @apply w-full py-3 bg-gradient-to-r from-red-600 to-blue-600 
+         hover:from-red-700 hover:to-blue-700 text-white font-semibold 
+         rounded-lg relative overflow-hidden;
+}
+
+.loading-spinner {
+  @apply flex items-center justify-center w-5 h-5 border-2 border-t-transparent border-white rounded-full animate-spin;
+}
+
+.btn-overlay {
+  @apply absolute inset-0 w-full h-full bg-white opacity-0 group-hover:opacity-20 transition;
+}

@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+.product-reviews {
+  @apply my-12;
+}
+
+.product-reviews h3 {
+  @apply text-2xl font-bold text-white mb-6;
+}
+
+.reviews-list {
+  @apply space-y-6;
+}
+
+.review-card {
+  @apply p-6 bg-gray-800 rounded-xl;
+}
+
+.review-card p:first-child {
+  @apply font-semibold text-yellow-400 mb-2;
+}
+
+.review-card p:last-child {
+  @apply text-gray-300 italic;
+}
+
+.add-review-form {
+  @apply mt-8 p-6 bg-gray-800 rounded-xl space-y-4;
+}
+
+.add-review-form h4 {
+  @apply text-xl font-semibold text-white;
+}
+
+.add-review-form label {
+  @apply block text-gray-300 mb-1;
+}
+
+.add-review-form select,
+.add-review-form textarea {
+  @apply w-full p-3 bg-gray-700 text-white border border-gray-600 rounded-lg focus:ring-2 focus:ring-emerald-500 focus:border-transparent;
+}
+
+.add-review-form textarea {
+  @apply h-24 resize-y;
+}
+
+.add-review-form button {
+  @apply mt-4 px-6 py-2 bg-emerald-600 hover:bg-emerald-700 text-white font-medium rounded-lg transition;
+}

@@ -1,6 +1,6 @@
 
 # مسار فولدر css
-$cssFolder = "D:\VS project\fitflow-next\src\components\css"
+$cssFolder = "D:\VS project\fitflow-next\src\components\css\Store"
 
 # لو الفولدر مش موجود هيعمله
 if (-not (Test-Path $cssFolder)) {
@@ -45,37 +45,7 @@ foreach ($file in $jsxFiles) {
 
 تصميم حيّ مع أنيميشن دخول البطاقات، وألوان قوية مرتبطة بالبراند.
 
-2. صفحة العضويات / الاشتراكات (Memberships)
 
-عرض جميع الباقات (شهرية، ربع سنوية، سنوية).
-
-تفاصيل كل باقة (السعر، المميزات، عدد الجلسات، المدربين).
-
-زر "اشترك الآن" مع أنيميشن Hover وتأثيرات Framer Motion عند فتح صفحة الدفع.
-
-3. صفحة البرامج التدريبية (Programs)
-
-قائمة بالبرامج التدريبية:
-
-كارد لكل برنامج (صورة + وصف قصير + المدة + مستوى الصعوبة).
-
-عند الضغط على برنامج → يفتح صفحة التفاصيل الخاصة به.
-
-4. صفحة تفاصيل البرنامج (Program Details)
-
-فيديو أو صور لشرح التمارين.
-
-جدول الحصص.
-
-أسماء المدربين.
-
-زر "انضم للبرنامج".
-
-5. صفحة المدربين (Trainers)
-
-قائمة بكل المدربين مع صورة وبايو قصير.
-
-زر "عرض الملف الشخصي" لكل مدرب.
 
 6. صفحة البروفايل (Profile)
 
@@ -87,21 +57,7 @@ foreach ($file in $jsxFiles) {
 
 عرض الإنجازات (عدد الحصص، الأوزان، القياسات).
 
-7. صفحة المتجر (Shop) (لو البراند بيبيع منتجات جيم)
-
-عرض المنتجات (ملابس، معدات، مكملات غذائية).
-
-فلتر حسب النوع والسعر.
-
 صفحة تفاصيل المنتج مع زر الشراء.
-
-8. صفحة التواصل (Contact Us)
-
-خريطة لموقع الجيم.
-
-معلومات التواصل.
-
-فورم إرسال رسالة.
 
 
 
@@ -110,15 +66,17 @@ foreach ($file in $jsxFiles) {
 
 # تحديد أسماء الملفات
 $files = @(
-    "TrainersHeader.jsx"
- "TrainersFilterBar.jsx"
-"TrainerCard.jsx"
- "TrainersGrid.jsx"
-"TrainersCTA.jsx"
+    "CheckoutHeader.jsx"
+"CheckoutSteps.jsx"
+"OrderSummary.jsx"
+"CustomerInfo.jsx"
+"PaymentMethods.jsx"
+"TrustBadges.jsx"
+"ConfirmButton.jsx"
 )
 
 # المسار اللي هتتحفظ فيه الملفات (عدله لو حابب)
-$path = "src\components\prgramDetails"
+$path = "src\components\Checkout"
 
 # إنشاء المجلد لو مش موجود
 if (-not (Test-Path $path)) {
@@ -205,3 +163,6 @@ export const programs = [
     difficulty: 5,
   },
 ];
+
+
+supabase fitflow password= zmJAdxNgjorHxn6c

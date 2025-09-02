@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+.featured-program-section {
+  @apply py-20 px-6 relative overflow-hidden;
+}
+
+.featured-program-container {
+  @apply max-w-5xl mx-auto bg-gradient-to-r from-red-900 to-black rounded-2xl overflow-hidden shadow-2xl;
+}
+
+.featured-program-content {
+  @apply md:flex;
+}
+
+.featured-program-image-container {
+  @apply md:w-1/2;
+}
+
+.featured-program-image {
+  @apply w-full h-64 md:h-full object-cover;
+}
+
+.featured-program-text-container {
+  @apply md:w-1/2 p-8 text-white flex flex-col justify-center;
+}
+
+.featured-program-title {
+  @apply text-3xl font-bold mb-4;
+}
+
+.featured-program-description {
+  @apply text-lg mb-6;
+}
+
+.featured-program-button {
+  @apply self-start px-6 py-3 bg-white text-black font-semibold rounded-xl shadow-lg;
+}

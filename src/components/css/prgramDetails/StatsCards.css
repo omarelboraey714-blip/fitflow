@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+.stats-cards-container {
+  @apply grid grid-cols-2 md:grid-cols-4 gap-4 my-8;
+}
+
+.stats-card {
+  @apply bg-gray-800 p-4 rounded-xl text-center;
+}
+
+.stats-card-value {
+  @apply text-2xl text-blue-400;
+}
+
+.stats-card-label {
+  @apply text-sm text-gray-400;
+}

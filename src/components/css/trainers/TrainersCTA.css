@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+.trainers-cta {
+  @apply py-24 px-6 text-center relative;
+}
+
+.trainers-cta-overlay {
+  @apply absolute inset-0 bg-black/70;
+}
+
+.trainers-cta-content {
+  @apply relative z-10 max-w-3xl mx-auto;
+}
+
+.trainers-cta-title {
+  @apply text-3xl font-bold text-white mb-6;
+}
+
+.trainers-cta-btn {
+  @apply cursor-pointer p-3 text-white font-semibold rounded-lg 
+         disabled:opacity-70 relative overflow-hidden 
+         bg-gradient-to-r from-blue-600 via-green-500 to-blue-500 
+         bg-[length:200%_200%] transition-all duration-500;
+}
+
+.trainers-cta-btn:hover {
+  background-position: 100% 0;
+}

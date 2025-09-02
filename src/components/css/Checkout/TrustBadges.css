@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+.trust-badges-container {
+  @apply py-12 px-6 text-center;
+}
+
+.trust-badges-wrapper {
+  @apply max-w-3xl mx-auto flex flex-wrap justify-center gap-8;
+}
+
+.trust-badge-item {
+  @apply flex flex-col items-center;
+}
+
+.trust-badge-icon {
+  @apply text-3xl mb-2;
+}
+
+.trust-badge-text {
+  @apply text-gray-400 text-sm;
+}

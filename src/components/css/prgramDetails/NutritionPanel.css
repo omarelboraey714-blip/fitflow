@@ -1,0 +1,37 @@
+@import "tailwindcss";
+
+.nutrition-section {
+  @apply my-12;
+}
+
+.nutrition-heading {
+  @apply text-2xl font-bold mb-6;
+}
+
+.nutrition-grid {
+  @apply grid md:grid-cols-2 gap-6;
+}
+
+.nutrition-card {
+  @apply bg-gray-800 p-6 rounded-xl;
+}
+
+.nutrition-card-heading {
+  @apply text-xl font-semibold mb-4;
+}
+
+.nutrition-macros {
+  @apply space-y-3;
+}
+
+.nutrition-macro-item {
+  @apply flex justify-between;
+}
+
+.nutrition-meal {
+  @apply mb-4;
+}
+
+.nutrition-meal-list {
+  @apply list-disc list-inside text-sm text-gray-300 mt-1;
+}

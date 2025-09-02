@@ -1,23 +1,37 @@
 "use client";
 
 import { motion } from "framer-motion";
+import "@/components/css/prgramDetails/BenefitsList.css";
 
 export default function BenefitsList({ items }) {
+  // تحقق من البيانات
+  const benefits = Array.isArray(items) ? items : [];
+
+  if (benefits.length === 0) {
+    return (
+      <p className="benefits-empty" role="alert" aria-live="polite">
+        لا توجد فوائد متاحة حاليًا.
+      </p>
+    );
+  }
+
   return (
-    <ul className="space-y-3 my-6">
-      {items.map((item, i) => (
+    <ul className="benefits-list" role="list">
+      {benefits.map((item, i) => (
         <motion.li
           key={i}
           initial={{ opacity: 0, x: -20 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ delay: i * 0.1 }}
-          className="flex items-center gap-2"
+          className="benefits-list-item"
+          role="listitem"
         >
           <svg
-            className="w-5 h-5 text-green-400"
+            className="benefits-list-icon"
             fill="none"
             stroke="currentColor"
             viewBox="0 0 24 24"
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"

@@ -1,25 +1,27 @@
 "use client";
 
 import { motion } from "framer-motion";
+import "@/components/css/trainers/TrainersHeader.css";
 
 export default function TrainersHeader() {
   return (
-    <section className="py-20 px-6 text-center">
+    <section className="trainers-header relative">
+      <div className="trainers-header-overlay"></div>
       <motion.h1
-        initial={{ opacity: 0, y: -30 }}
+        initial={{ opacity: 0, y: -50 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-        className="text-4xl md:text-5xl font-bold text-white mb-4"
+        transition={{ duration: 0.8 }}
+        className="trainers-header-title"
       >
-        تعرف على مدربينا
+        تعرف على مدربينا المحترفين
       </motion.h1>
       <motion.p
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
-        className="text-xl text-gray-300 max-w-2xl mx-auto"
+        transition={{ duration: 0.8, delay: 0.3 }}
+        className="trainers-header-subtitle"
       >
-        أفضل الخبراء لمساعدتك في الوصول لهدفك
+        خبراء لياقة لديهم الشغف لمساعدتك في تحقيق أهدافك
       </motion.p>
     </section>
   );

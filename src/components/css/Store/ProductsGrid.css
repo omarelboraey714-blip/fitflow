@@ -1,0 +1,17 @@
+@import "tailwindcss";
+
+.products-grid-section {
+  @apply py-16 px-6;
+}
+
+.products-grid-container {
+  @apply max-w-7xl mx-auto;
+}
+
+.products-grid-title {
+  @apply text-2xl font-bold text-white mb-8;
+}
+
+.products-grid {
+  @apply grid md:grid-cols-2 lg:grid-cols-3 gap-8;
+}

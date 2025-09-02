@@ -1,0 +1,49 @@
+@import "tailwindcss";
+
+.comparison-section {
+  @apply py-20 px-6 bg-black;
+}
+
+.comparison-container {
+  @apply max-w-5xl mx-auto;
+}
+
+.comparison-title {
+  @apply text-3xl font-bold text-center text-white mb-12;
+}
+
+.comparison-table-container {
+  @apply overflow-x-auto;
+}
+
+.comparison-table-container::-webkit-scrollbar {
+  @apply hidden;
+}
+
+.comparison-table {
+  @apply w-full border-collapse min-w-[400px];
+}
+
+.comparison-table-header {
+  @apply text-white text-left pb-4;
+}
+
+.comparison-table-header-plan {
+  @apply text-white pb-4 text-center;
+}
+
+.comparison-table-row {
+  @apply border-t border-gray-700;
+}
+
+.comparison-table-feature {
+  @apply py-4 text-gray-300;
+}
+
+.comparison-table-cell {
+  @apply py-4 text-center;
+}
+
+.comparison-table-status {
+  @apply text-green-400;
+}

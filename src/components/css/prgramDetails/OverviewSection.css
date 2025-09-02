@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+.overview-section {
+  @apply my-12;
+}
+
+.overview-heading {
+  @apply text-2xl font-bold mb-6;
+}
+
+.overview-description {
+  @apply text-gray-300 mb-6;
+}
+
+.overview-subheading {
+  @apply text-xl font-semibold mb-4;
+}
+
+.overview-requirements-list {
+  @apply list-disc list-inside text-gray-300 space-y-1;
+}

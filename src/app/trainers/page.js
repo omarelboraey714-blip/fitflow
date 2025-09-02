@@ -4,9 +4,8 @@ import TrainersHeader from "@/components/Trainers/TrainersHeader";
 import TrainersFilterBar from "@/components/Trainers/TrainersFilterBar";
 import TrainersGrid from "@/components/Trainers/TrainersGrid";
 import TrainersCTA from "@/components/Trainers/TrainersCTA";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-// استخدم نفس ملف البرامج أو أنشئ `lib/trainers.js`
 const trainers = [
   {
     id: 1,
@@ -36,8 +35,10 @@ const trainers = [
 
 export default function TrainersPage() {
   const [filteredTrainers, setFilteredTrainers] = useState(trainers);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleFilter = ({ search, specialty, experience }) => {
+    setIsLoading(true);
     let result = trainers;
 
     if (search) {
@@ -49,24 +50,21 @@ export default function TrainersPage() {
       result = result.filter((t) => t.specialty === specialty);
     }
     if (experience !== "all") {
-      if (experience === "أقل من 3 سنوات") {
-        result = result.filter((t) => t.experience === "أقل من 3 سنوات");
-      } else if (experience === "3-5 سنوات") {
-        result = result.filter((t) => t.experience === "3-5 سنوات");
-      } else {
-        result = result.filter((t) => t.experience === "أكثر من 5 سنوات");
-      }
+      result = result.filter((t) => t.experience === experience);
     }
 
-    setFilteredTrainers(result);
+    setTimeout(() => {
+      setFilteredTrainers(result);
+      setIsLoading(false);
+    }, 500); // Simulate loading delay
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-900 to-purple-900 text-white">
+    <div className="min-h-screen bg-gray-900 text-white">
       <TrainersHeader />
-      <div className="px-6 max-w-7xl mx-auto">
+      <div className="px-4 sm:px-6 max-w-7xl mx-auto">
         <TrainersFilterBar onFilter={handleFilter} />
-        <TrainersGrid trainers={filteredTrainers} />
+        <TrainersGrid trainers={filteredTrainers} isLoading={isLoading} />
       </div>
       <TrainersCTA />
     </div>

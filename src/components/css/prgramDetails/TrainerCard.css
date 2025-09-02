@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+.trainer-card {
+  @apply bg-gray-800 p-6 rounded-xl text-center;
+}
+
+.trainer-avatar {
+  @apply w-20 h-20 rounded-full mx-auto mb-4 object-cover;
+}
+
+.trainer-name {
+  @apply text-xl font-bold;
+}
+
+.trainer-rating {
+  @apply text-yellow-400;
+}
+
+.trainer-certs {
+  @apply text-gray-400 text-sm;
+}
+
+.trainer-bio {
+  @apply text-gray-300 mt-2;
+}

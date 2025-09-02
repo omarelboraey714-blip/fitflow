@@ -1,0 +1,5 @@
+@import "tailwindcss";
+
+.add-to-cart-button {
+  @apply p-2 bg-gradient-to-r from-blue-600 to-green-500 text-white font-semibold rounded-lg;
+}

@@ -1,0 +1,21 @@
+@import "tailwindcss";
+
+.faq-section {
+  @apply my-12;
+}
+
+.faq-heading {
+  @apply text-2xl font-bold mb-6;
+}
+
+.faq-item {
+  @apply mb-4;
+}
+
+.faq-question-button {
+  @apply w-full text-left bg-gray-800 p-4 rounded-lg font-semibold;
+}
+
+.faq-answer {
+  @apply p-4 bg-gray-700 rounded-b-lg;
+}

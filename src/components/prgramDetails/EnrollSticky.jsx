@@ -1,26 +1,45 @@
 "use client";
 
 import { motion } from "framer-motion";
+import Link from "next/link";
+import "@/components/css/prgramDetails/EnrollSticky.css";
 
-export default function EnrollSticky({ price, discount }) {
+export default function EnrollSticky({ price, discount, slug }) {
+  // تحققات البيانات
+  const safePrice = Number.isFinite(price) ? price : 0;
+  const safeDiscount = Number.isFinite(discount) && discount > 0 ? discount : 0;
+  const safeSlug = slug || "";
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="fixed bottom-0 left-0 right-0 bg-gradient-to-r from-blue-600 to-purple-600 text-white p-4 shadow-lg md:static md:p-6"
+      className="enroll-sticky"
+      role="complementary"
+      aria-label="معلومات التسجيل"
     >
-      <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+      <div className="enroll-sticky-container">
         <div>
-          <strong className="text-2xl">{price} ر.س</strong>
-          {discount && (
-            <span className="text-sm line-through text-gray-300 ml-2">
-              {price + 100} ر.س
+          <strong className="enroll-sticky-price">{safePrice} ر.س</strong>
+          {safeDiscount > 0 && (
+            <span className="enroll-sticky-discount">
+              {Math.round(safePrice / (1 - safeDiscount / 100))} ر.س
             </span>
           )}
         </div>
-        <button className="mt-2 md:mt-0 px-6 py-3 bg-white text-blue-600 font-semibold rounded-xl hover:bg-gray-100">
-          انضم الآن
-        </button>
+        <Link
+          href={`/checkout?item=${encodeURIComponent(safeSlug)}&type=program`}
+          passHref
+        >
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="enroll-sticky-button"
+            aria-label={`الانضمام إلى برنامج ${safeSlug}`}
+          >
+            انضم الآن
+          </motion.button>
+        </Link>
       </div>
     </motion.div>
   );

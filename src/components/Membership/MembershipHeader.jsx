@@ -1,15 +1,16 @@
 "use client";
 
 import { motion } from "framer-motion";
+import "../css/membership/MembershipHeader.css";
 
 export default function MembershipHeader() {
   return (
-    <section className="py-20 px-6 text-center">
+    <section className="membership-header-section">
       <motion.h1
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6 }}
-        className="text-4xl md:text-5xl font-bold text-white mb-4"
+        className="membership-header-title"
       >
         اختر عضويتك وابدأ رحلتك
       </motion.h1>
@@ -17,7 +18,7 @@ export default function MembershipHeader() {
         initial={{ opacity: 0, x: -50 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="text-xl text-gray-300 max-w-2xl mx-auto"
+        className="membership-header-description"
       >
         انضم لآلاف الرياضيين الذين اختاروا الأفضل
       </motion.p>

@@ -1,56 +1,177 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useAuth } from "@/lib/auth";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 import "./css/Header.css";
+
+// قائمة الروابط الرئيسية
+// كل عنصر له: href, label, وclass للشاشة الكبيرة والصغيرة
+const NAV_ITEMS = [
+  {
+    href: "/",
+    label: "الرئيسية",
+    desktopClass: "nav-link",
+    mobileClass: "nav-mobile-link",
+  },
+  {
+    href: "/memberships",
+    label: "العضويات",
+    desktopClass: "nav-link",
+    mobileClass: "nav-mobile-link",
+  },
+  {
+    href: "/programs",
+    label: "البرامج التدريبية",
+    desktopClass: "nav-link",
+    mobileClass: "nav-mobile-link",
+  },
+  {
+    href: "/trainers",
+    label: "المدربين",
+    desktopClass: "nav-link",
+    mobileClass: "nav-mobile-link",
+  },
+  {
+    href: "/store",
+    label: "المتجر",
+    desktopClass: "nav-link",
+    mobileClass: "nav-mobile-link",
+  },
+  {
+    href: "/contact",
+    label: "تواصل معنا",
+    desktopClass: "nav-link",
+    mobileClass: "nav-mobile-link",
+  },
+];
+
+// العناصر التي تعتمد على حالة المستخدم
+const AUTH_ITEMS = [
+  {
+    href: "/dashboard",
+    label: "لوحة التحكم",
+    desktopClass: "nav-link-auth",
+    mobileClass: "nav-mobile-auth",
+    condition: "admin",
+  },
+  {
+    href: "/profile",
+    label: "حسابي",
+    desktopClass: "nav-link-auth",
+    mobileClass: "nav-mobile-auth",
+    condition: "user",
+  },
+  {
+    href: "/auth/login",
+    label: "تسجيل الدخول",
+    desktopClass: "nav-button-login",
+    mobileClass: "nav-mobile-button-login",
+    condition: "logged-out",
+  },
+];
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
   const { user, role, loading } = useAuth();
+  const router = useRouter();
+
+  // تحديد حالة المستخدم
+  const userType = loading
+    ? "loading"
+    : user
+    ? role === "admin"
+      ? "admin"
+      : "user"
+    : "logged-out";
+
+  // دالة للتنقل وإغلاق القائمة
+  const handleNavigate = (href) => {
+    setMenuOpen(false);
+    router.push(href);
+  };
+
+  // إغلاق القائمة عند النقر خارجها
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      const target = e.target;
+      if (
+        menuOpen &&
+        !target.closest(".nav-mobile") &&
+        !target.closest(".menu-button") &&
+        !target.closest(".logo")
+      ) {
+        setMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, [menuOpen]);
+
+  // هل نعرض العنصر حسب حالة المستخدم؟
+  const shouldShowItem = (condition) => {
+    if (!condition) return true;
+    if (condition === "logged-out") return userType === "logged-out";
+    if (condition === "user")
+      return userType === "user" || userType === "admin";
+    if (condition === "admin") return userType === "admin";
+    return false;
+  };
 
   return (
-    <header className="header">
+    <header className="header" role="banner">
       <div className="header-container">
-        {/* القائمة على الشاشات الكبيرة */}
-        <nav className="nav-desktop">
-          <a href="/" className="nav-link">
-            الرئيسية
-          </a>
-          <a href="/memberships" className="nav-link">
-            العضويات
-          </a>
-          <a href="/programs" className="nav-link">
-            البرامج التدريبيه
-          </a>
-          <a href="/trainers" className="nav-link">
-            المدربين
-          </a>
+        {/* اللوجو */}
+        <div className="logo">
+          <Link href="/" onClick={() => handleNavigate("/")}>
+            FitFlow
+          </Link>
+        </div>
 
-          {/* عرض حسب الدور */}
-          {loading ? (
-            <div className="loading-placeholder"></div>
-          ) : user ? (
-            <a
-              href={role === "admin" ? "/dashboard" : "/profile"}
-              className="nav-link-auth"
+        {/* القائمة على الشاشات الكبيرة */}
+        <nav className="nav-desktop" role="navigation">
+          {NAV_ITEMS.map((item) => (
+            <Link
+              key={item.href}
+              href={item.href}
+              onClick={() => handleNavigate(item.href)}
+              className={item.desktopClass}
             >
-              {role === "admin" ? "لوحة التحكم" : "حسابي"}
-            </a>
-          ) : (
-            <a href="/auth/login" className="nav-button-login">
-              تسجيل الدخول
-            </a>
-          )}
+              {item.label}
+            </Link>
+          ))}
+
+          {/* العناصر حسب حالة المستخدم */}
+          {!loading &&
+            AUTH_ITEMS.map(
+              (item) =>
+                shouldShowItem(item.condition) && (
+                  <Link
+                    key={item.href}
+                    href={item.href}
+                    onClick={() => handleNavigate(item.href)}
+                    className={item.desktopClass}
+                  >
+                    {item.label}
+                  </Link>
+                )
+            )}
+
+          {loading && <div className="loading-placeholder"></div>}
         </nav>
 
         {/* زر القائمة على الجوال */}
-        <button onClick={() => setMenuOpen(!menuOpen)} className="menu-button">
-          {menuOpen ? "✖️" : "☰"}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="menu-button"
+          aria-label={menuOpen ? "إغلاق القائمة" : "فتح القائمة"}
+        >
+          {menuOpen ? "✕" : "☰"}
         </button>
-
-        {/* اللوجو */}
-        <div className="logo">FitFlow</div>
       </div>
 
       {/* القائمة المنسدلة على الجوال */}
@@ -59,57 +180,37 @@ export default function Header() {
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
           className="nav-mobile"
+          role="navigation"
+          aria-label="قائمة التنقل على الجوال"
         >
           <div className="nav-mobile-container">
-            <a
-              href="/"
-              onClick={() => setMenuOpen(false)}
-              className="nav-mobile-link"
-            >
-              الرئيسية
-            </a>
-            <a
-              href="/memberships"
-              onClick={() => setMenuOpen(false)}
-              className="nav-mobile-link"
-            >
-              العضويات
-            </a>
-            <a
-              href="/programs"
-              onClick={() => setMenuOpen(false)}
-              className="nav-mobile-link"
-            >
-              البرامج التدريبيه
-            </a>
-
-            <a
-              href="/trainers"
-              onClick={() => setMenuOpen(false)}
-              className="nav-mobile-link"
-            >
-              المدربين
-            </a>
-
-            {loading ? (
-              <div className="loading-placeholder"></div>
-            ) : user ? (
-              <a
-                href={role === "admin" ? "/dashboard" : "/profile"}
-                className="nav-mobile-auth"
-                onClick={() => setMenuOpen(false)}
+            {NAV_ITEMS.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => handleNavigate(item.href)}
+                className={item.mobileClass}
               >
-                {role === "admin" ? "لوحة التحكم" : "حسابي"}
-              </a>
-            ) : (
-              <a
-                href="/auth/login"
-                className="nav-mobile-button-login"
-                onClick={() => setMenuOpen(false)}
-              >
-                تسجيل الدخول
-              </a>
-            )}
+                {item.label}
+              </Link>
+            ))}
+
+            {!loading &&
+              AUTH_ITEMS.map(
+                (item) =>
+                  shouldShowItem(item.condition) && (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      onClick={() => handleNavigate(item.href)}
+                      className={item.mobileClass}
+                    >
+                      {item.label}
+                    </Link>
+                  )
+              )}
+
+            {loading && <div className="loading-placeholder"></div>}
           </div>
         </motion.div>
       )}

@@ -1,0 +1,32 @@
+@import "tailwindcss";
+
+.filter-bar {
+  @apply bg-gray-800 p-6 rounded-2xl mb-8 grid md:grid-cols-4 gap-4;
+}
+
+.filter-label {
+  @apply block text-sm text-gray-300 mb-2;
+}
+
+.filter-input {
+  @apply w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500;
+}
+
+.filter-select {
+  @apply w-full px-4 py-2 bg-gray-700 border border-gray-600 rounded-lg text-white focus:outline-none;
+}
+
+.trainer-filter-button-wrapper {
+  @apply flex items-end;
+}
+
+.trainer-filter-button {
+  @apply w-full cursor-pointer py-3 text-white font-semibold rounded-lg 
+         disabled:opacity-70 relative overflow-hidden 
+         bg-gradient-to-r from-blue-600 via-green-500 to-blue-500 
+         bg-[length:200%_200%] transition-all duration-500;
+}
+
+.trainer-filter-button:hover {
+  background-position: 100% 0;
+}

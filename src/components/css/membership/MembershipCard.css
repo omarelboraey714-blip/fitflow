@@ -1,0 +1,45 @@
+@import "tailwindcss";
+
+.membership-card {
+  @apply bg-gradient-to-br from-gray-900 to-black p-8 rounded-2xl shadow-2xl text-white relative overflow-hidden;
+}
+
+.membership-card-decoration {
+  @apply absolute top-0 right-0 w-20 h-20 bg-white/10 rounded-bl-full;
+}
+
+.membership-card-title {
+  @apply text-2xl font-bold mb-2;
+}
+
+.membership-card-price {
+  @apply text-4xl font-extrabold mb-6;
+}
+
+.membership-card-subtitle-container {
+  @apply flex items-center gap-3 mb-6;
+}
+
+.membership-card-subtitle {
+  @apply text-lg;
+}
+
+.membership-card-features {
+  @apply space-y-3 mb-8;
+}
+
+.membership-card-feature {
+  @apply flex items-center gap-2;
+}
+
+.membership-card-check-icon {
+  @apply w-5 h-5 text-green-400;
+}
+
+.membership-card-feature-text {
+  @apply text-gray-200;
+}
+
+.membership-card-button {
+  @apply w-full py-3 bg-white text-black font-semibold rounded-xl shadow-lg hover:shadow-2xl transition;
+}

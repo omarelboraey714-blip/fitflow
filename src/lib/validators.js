@@ -12,7 +12,7 @@ export const registerSchema = z
     gender: z.enum(["ذكر", "أنثى", "أفضل عدم الإفصاح"]),
     goal: z.string().optional(),
     experience: z.string().optional(),
-    plan: z.enum(["monthly", "quarterly", "yearly"]),
+    plan: z.enum(["monthly", "quarterly", "yearly", "VIP"]),
   })
   .refine((data) => data.password === data.confirmPassword, {
     message: "كلمتا المرور غير متطابقتين",

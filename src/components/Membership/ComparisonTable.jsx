@@ -1,31 +1,31 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { membershipPlans } from "@/lib/plans";
+import "@/components/css/membership/ComparisonTable.css";
 
-// الميزات المشتركة اللي نقارن عليها
+// الميزات المهمة فقط (ليست كل شيء)
 const comparisonFeatures = [
   "دخول يومي",
+  "استخدام الأجهزة",
+  "تدريبات إرشادية",
   "تدريب شخصي",
   "ورش عمل",
-  "تغذية مخصصة",
+  "هدية سنوية",
   "استشارات شهرية",
 ];
 
-export default function ComparisonTable() {
+export default function ComparisonTable({ memberships = [] }) {
   return (
-    <section className="py-20 px-6 bg-black">
-      <div className="max-w-5xl mx-auto">
-        <h2 className="text-3xl font-bold text-center text-white mb-12">
-          مقارنة الباقات
-        </h2>
-        <div className="overflow-x-auto">
-          <table className="w-full border-collapse">
+    <section className="comparison-section">
+      <div className="comparison-container">
+        <h2 className="comparison-title">مقارنة الباقات</h2>
+        <div className="comparison-table-container">
+          <table className="comparison-table">
             <thead>
               <tr>
-                <th className="text-white text-left pb-4">الميزة</th>
-                {membershipPlans.map((plan, i) => (
-                  <th key={i} className="text-white pb-4 text-center">
+                <th className="comparison-table-header">الميزة</th>
+                {memberships.map((plan) => (
+                  <th key={plan.id} className="comparison-table-header-plan">
                     {plan.name}
                   </th>
                 ))}
@@ -39,12 +39,18 @@ export default function ComparisonTable() {
                   whileInView={{ x: 0, opacity: 1 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="border-t border-gray-700"
+                  className="comparison-table-row"
                 >
-                  <td className="py-4 text-gray-300">{feature}</td>
-                  {membershipPlans.map((plan, j) => (
-                    <td key={j} className="py-4 text-center">
-                      <span className="text-green-400">
+                  <td className="comparison-table-feature">{feature}</td>
+                  {memberships.map((plan) => (
+                    <td key={plan.id} className="comparison-table-cell">
+                      <span
+                        className={
+                          plan.features.includes(feature)
+                            ? "comparison-table-status active"
+                            : "comparison-table-status inactive"
+                        }
+                      >
                         {plan.features.includes(feature) ? "✔" : "✖"}
                       </span>
                     </td>

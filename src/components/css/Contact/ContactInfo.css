@@ -1,0 +1,29 @@
+@import "tailwindcss";
+
+.contact-section {
+  @apply py-12 px-6;
+}
+
+.contact-container {
+  @apply max-w-7xl mx-auto;
+}
+
+.contact-grid {
+  @apply grid md:grid-cols-3 gap-8;
+}
+
+.contact-card {
+  @apply text-center;
+}
+
+.contact-icon {
+  @apply text-4xl mb-4 inline-block;
+}
+
+.contact-title {
+  @apply text-lg font-semibold text-white;
+}
+
+.contact-text {
+  @apply text-gray-400;
+}
